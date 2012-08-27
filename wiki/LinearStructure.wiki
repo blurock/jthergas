@@ -1,0 +1,22 @@
+A linear molecule is defined recursively:
+
+ * An atom
+ * A linear structure as defined by a meta-atom
+ * An atom connected to a linear portion
+ * two linear portions connected together.
+
+== Linear Meta Atom ==
+
+Linear atoms are defined in the SQL table MetaAtomInfo with the {{{MetaAtomType}}} being {{{LinearStructure}}}. 
+They can be isolated with the command:
+
+{{{select * from `MetaAtomInfo` where MetaAtomType="LinearStructure"}}}
+
+Some defined linear meta atoms are:
+ * Chlorine atom
+ * Florine atom
+ * Bromine atom
+ * Hydrogen atom
+ * Ethyne group
+
+[MetaAtomInfo back]
