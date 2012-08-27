@@ -1,0 +1,50 @@
+To ensure flexibility in the definition of the [wiki:BensonRule BensonRules], meta atoms defining each atom type used in the rules is defined. In JTHERGAS these are called {{{BensonAtom}}}'s and are defined in MetaAtomInfo.
+
+For example, the [wiki:BensonRule BensonRules] for a double bonded carbon connected to a carbon and a hydrogen is defined by:
+{{{c/d-c-h}}
+
+This uses three MetaAtomInfo definitions, '''{{{c/d}}}''', '''{{{c}}}''' and '''{{{h}}}'''.
+
+'''{{{c/d}}}''' is defined with the CMLElement DoubleBondCarbon:
+
+{{{
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<molecule id="DoubleBondCarbon" xmlns="http://www.xml-cml.org/schema">
+  <atomArray>
+    <atom id="a1" elementType="Du" formalCharge="0" hydrogenCount="2"/>
+    <atom id="a2" elementType="C" formalCharge="0" hydrogenCount="2"/>
+    <atom id="a3" elementType="Du" formalCharge="0" hydrogenCount="0"/>
+    <atom id="a4" elementType="Du" formalCharge="0" hydrogenCount="0"/>
+  </atomArray>
+  <bondArray>
+    <bond id="b1" atomRefs2="a2 a1" order="D"/>
+    <bond id="b2" atomRefs2="a3 a2" order="S"/>
+    <bond id="b3" atomRefs2="a4 a2" order="S"/>
+  </bondArray>
+</molecule>
+}}}
+
+The carbon is specified by label a2 and is connected with a double bond to an [wiki:UnspecifiedAtom unspecified atom] with label a1 and two single bond to [wiki:UnspecifiedAtom unspecified atom]'s with labels a3 and a4.
+
+
+A BensonAtom definition can also have larger structures, such as a carboxyl group, '''{{{co}}}'''. Here the CMLElement, named {{{AldhydeKetone}}}:
+{{{
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<molecule id="AldehydeKetone" xmlns="http://www.xml-cml.org/schema">
+  <atomArray>
+    <atom id="a1" elementType="C" x2="6.6676" y2="40.4276" formalCharge="0" hydrogenCount="0"/>
+    <atom id="a2" title="*" elementType="Du" x2="5.3594" y2="39.7102" formalCharge="0" hydrogenCount="3"/>
+    <atom id="a3" elementType="O" x2="6.6676" y2="41.9468" formalCharge="0" hydrogenCount="0"/>
+    <atom id="a5" title="*" elementType="Du" x2="6.6676" y2="38.9084" formalCharge="0" hydrogenCount="3"/>
+  </atomArray>
+  <bondArray>
+    <bond id="b1" atomRefs2="a2 a1" order="S"/>
+    <bond id="b2" atomRefs2="a1 a3" order="D"/>
+    <bond id="b4" atomRefs2="a1 a5" order="S"/>
+  </bondArray>
+</molecule>
+
+}}}
+
+The carbon (label a1) and the oxygen (label a3) are connected with a double bond. The carbon is also connected with single bonds to two other [wiki:UnspecifiedAtom unspecified atom]'s.
+
