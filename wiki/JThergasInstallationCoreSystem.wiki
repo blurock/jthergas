@@ -1,0 +1,63 @@
+To install a local version of the core system of JTHERGAS, with line commands, there are essentially three steps:
+
+ * '''System level installations''': These are packages on which JTHERGAS is built.
+      * '''SQL''': This involves downloading the SQL system (or maybe it is already installed).
+      * '''JRE''': Install the JAVA runtime system (JRE).
+ * '''Jar files''': Jar files are the JAVA library files. There are essentially equivalent to Microsoft dll libraries, or UNIX lib files.
+      * '''JTherGas.jar''': This is a jar file of the JTHERGAS system with primitives related to reading THERGAS information.
+      * '''JThermodyanicData.jar''': This is the jar file with JTHERGAS system.
+      * '''JAVA packages''': The JTHERGAS system is built upon several JAVA packages. Each package has its own jar file.
+            * '''cdk-1.1.1.jar''': This is the Chemistry Development Kit, a standard set of JAVA chemistry classes, primarily for organic chemistry.
+            * '''jumbo-5.4.2-b1.jar'''
+            * '''mysql-connector-java-5.1.6-bin.jar'''
+            * '''swing-layout-1.0.4.jar'''
+            * '''xom-1.1.jar'''
+ * '''JThermodynamics_.sql''': The SQL database dump of the current database
+
+== System level installations ==
+
+=== SQL ===
+
+The data in the JTHERGAS system is stored in an [http://www.mysql.com/ MYSQL] database. This has to be installed on the computer where JTHERGAS is installed.
+On the [http://www.mysql.com/downloads/ Downloads] page select "MySQL Community Server" to download. Select the version for your computer and operating system.
+
+During the installation, users are set up.
+Though this will change, the current version of JTHERGAS needs the root user with a password 'laguna'. 
+
+
+
+
+
+=== JRE ===
+
+The JTHERGAS system is based on [http://www.java.com JAVA].  [http://www.java.com/en/download/index.jsp Download] and install the java version for your computer and operating system. 
+
+== Jar files ==
+
+The jar files, which are the library files of the JAVA system, should be put in a single directory. They are all needed to run the system (see the command below).
+
+
+=== External Jar Files === 
+ * '''External JAVA packages''': The JTHERGAS system is built upon several JAVA packages. Each package has its own jar file. These are packaged in a zip file.
+    * '''cdk-1.1.1.jar''': This is the Chemistry Development Kit, a standard set of JAVA chemistry classes, primarily for organic chemistry.
+    * '''jumbo-5.4.2-b1.jar'''
+    * '''mysql-connector-java-5.1.6-bin.jar'''
+    * '''swing-layout-1.0.4.jar'''
+    * '''xom-1.1.jar'''
+
+These are relatively stable are not updated.
+
+=== JTEHRGAS jar files ===
+
+The JTHERGAS system is made up of two jar files:
+
+ * '''JTherGas.jar'''
+ * '''JThermodyanicData.jar'''
+
+When the system is updated, these jar files are updated. 
+
+== SQL Database Dump ==
+
+The current version of the SQL database is dumped to an ASCII file. This file is read in 
+
+[JThergas back]
