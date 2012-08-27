@@ -1,0 +1,51 @@
+These are the basic instructions on how to install the JThergas sysem for use with the line command
+
+= Dependencies =
+
+== mySQL ==
+
+The JTHERGAS core system depends on SQL ([http://www.mysql.com/  mySQL]). You can download the free 'mySQL Community Server' from mySQL's download page (for the appropriate operating system).
+
+Part of the installation is to set up a user (the root) and password. The password needs to be noted for use with JTHERGAS.
+
+== Download the JTHERGAS core system ==
+
+The external jar (if not using NetBeans, where it is included).
+* mysql-connector-java-5.1.6-bin.jar
+* 
+
+For the core system, one needs two packages:
+* JThergas
+* JThermodynamicData
+
+
+
+To download the packages with CVS command line enter the line to log in:
+{{{
+cvs -d:pserver:anonymous@jthergas.cvs.sourceforge.net:/cvsroot/jthergas login 
+}}}
+
+The download the two packages
+{{{
+cvs -z3 -d:pserver:anonymous@jthergas.cvs.sourceforge.net:/cvsroot/jthergas co -P JThergas
+
+cvs -z3 -d:pserver:anonymous@jthergas.cvs.sourceforge.net:/cvsroot/jthergas co -P JThermodynamicData
+}}}
+
+= mySQL Configuration =
+{{{
+mysql -u root -p
+}}}
+It will ask for password
+
+then type:
+{{{
+CREATE DATABASE Thermodynamics;
+LOAD DATA INFILE 'JThermodynamics_20091208.sql'
+}}}
+
+
+Or just with the one command:
+{{{
+mysql -u username -p Thermodynamics < JThermodynamics_20091208.sql
+}}}
