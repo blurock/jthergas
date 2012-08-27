@@ -1,0 +1,9 @@
+These are line commands to build up the database using the class ''thermo.build.BuildDatabase'':
+
+ * [JThergasLineCommandsDatabaseSubstructureThermo SubstructureThermo] Thermodynamic corrections for cycles and steric hindrances.
+ * [JThergasLineCommandsDatabaseSubstructures Substructures] Put substructures in the database
+ * [JThergasLineCommandsDatabaseSymmetryDefinitions Symmetry Definitions] Defining symmetry definitions.
+ * [JThergasLineCommandsDatabaseBuildBenson Build Benson Tables] Build the individual Benson rules.
+
+
+[JThergasLineCommands back]
