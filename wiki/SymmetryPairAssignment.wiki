@@ -1,0 +1,40 @@
+{{{SymmetryName}}}::
+    The name of the symmetry definition that this pairing belongs to.
+{{{GroupName}}}::
+    The group this label belongs to
+{{{AtomId}}}::
+    The label in the CMLElement definition of the structure (the name is found in SymmetryDefinition).
+{{{ConnectedSymmetry}}}::
+    This is the symmetry of the group represented by the label.
+
+The types of connected symmetries ({{{ConnectedSymmetry}}}) are:
+X::
+   No symmetry requirement
+L::
+   The group has to be linear (see LinearDefinition).
+a number::
+   The group has to have the secondary symmetry of this number.
+N::
+   xxx
+    
+The rest of the complete symmetry definition is in SymmetryDefinition.
+
+== Table Definition ==
+
+{{{
+--
+-- Table structure for table `SymmetryPairAssignments`
+--
+
+DROP TABLE IF EXISTS `SymmetryPairAssignments`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `SymmetryPairAssignments` (
+  `SymmetryName` varchar(40) DEFAULT NULL,
+  `GroupName` varchar(20) DEFAULT NULL,
+  `AtomId` varchar(20) DEFAULT NULL,
+  `ConnectedSymmetry` varchar(10) DEFAULT 'N'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+}}}
