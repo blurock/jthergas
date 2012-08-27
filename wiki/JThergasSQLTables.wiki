@@ -1,0 +1,8 @@
+The list of tables:
+ * [CMLStructures CMLStructures]
+ * DatabaseMolecules
+ * MetaAtomInfo
+ * SymmetryDefinition
+ * SymmetryPairAssignments
+ 
+[JThergas back]
