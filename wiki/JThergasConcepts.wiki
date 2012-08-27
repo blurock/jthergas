@@ -1,0 +1,8 @@
+These are concepts and definitions that are used throughout the document:
+
+ * BensonAtom
+ * LinearStructure
+ * CML
+ * MetaAtomInfo
+ 
+[JThergas back]
