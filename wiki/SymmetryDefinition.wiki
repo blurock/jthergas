@@ -1,0 +1,60 @@
+The {{{SymmetryDefinition}}} has the basic information for the symmetry definition:
+
+{{{SymmetryName}}}::
+   The name of the symmetry being defined
+{{{ElementName}}}::
+   The name of the structure of the symmetry definition (corresponding to the CMLElement)
+{{{SymmetryType}}}::
+   The type symmetry 
+{{{SymmetryFactor}}}::
+   The numerical factor
+
+The rest of the complete symmetry definition is given in SymmetryPairAssignments.
+
+== Symmetry Type ==
+
+The following symmetry types have corresponding classes in JTHERGAS:
+
+{{{ExternalSymmetry}}}::
+    The external symmetry
+{{{OpticalSymmetry}}}::
+    Optical symmetry
+{{{InternalSymmetry}}}
+    Internal symmetry
+{{{SecondaryExternalSymmetry}}}::
+    Secondary external symmetry
+
+== Table Definition ==
+
+{{{
+--
+-- Table structure for table `SymmetryDefinition`
+--
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+Add your content here.
+
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
+
+DROP TABLE IF EXISTS `SymmetryDefinition`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `SymmetryDefinition` (
+  `SymmetryName` varchar(40) NOT NULL,
+  `ElementName` varchar(40) DEFAULT NULL,
+  `SymmetryType` varchar(40) DEFAULT NULL,
+  `SymmetryFactor` double DEFAULT '1',
+  PRIMARY KEY (`SymmetryName`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+}}}
+
+[JThergasSQLTables back]
