@@ -1,0 +1,57 @@
+= thermo.compute.ComputeThermodynamicsFromNancyString =
+
+The JAVA main class within JThermodynamicData thermo.compute.ComputeThermodynamicsFromNancyString is for computing the thermodynamics of individual molecules. The attached script can be used as a basis to run this command.
+
+The java command takes the following line input:
+
+ * MOLECULE NancyString MoleculeName
+   * '''MOLECULE''': Keyword signifying that the next argument is a molecule description in Nancy linear string form
+   * '''NancyString''': The molecule in nancy linear string form (it might have to be put into quotes)
+   * "MoleculeName": The name of the molecule (a reference in the NASA polynomial).
+   * ''Output'': The output to the terminal is the computation for this molecule itself. The final output is a summary of the benson rules with the corrections and the NASA polynomial.
+ * FILE Filename
+   * '''FILE''': Keyword signifying that the next argument is a filename
+   * '''Filename''': The name of the file with the molecules. The format of the file is one molecule per line. Each line has two arguments (separated by spaces or tabs):
+      * Molecule as a Nancy linear string
+      * Name of the molecule (this name is put in the NASA polynomial.
+
+== MOLECULE ==
+
+An input line to compute a single molecule can be the following:
+
+MOLECULE NancyString MoleculeName
+
+For example:
+
+MOLECULE  "c(/ch3)3/ch2/ch(/ch3)2" test
+
+The output consists of intermediate printing (in the debugging phase, this could be more) and at the end the summary:
+
+{{{
+
+=========== Contributions ==============================
+BensonThermodynamicBase(c-(h)/3-(c)):        H298:-10.098        S298:30.423        Reference:'StandardBenson'        [300.0, 6.15]        [400.0, 7.84]        [500.0, 9.4]        [600.0, 10.79]        [800.0, 13.02]        [1000.0, 14.77]        [1500.0, 17.58]
+BensonThermodynamicBase(c-(c)/4):        H298:4.59        S298:-35.72        Reference:'StandardBenson'        [300.0, 3.95]        [400.0, 6.13]        [500.0, 7.36]        [600.0, 8.12]        [800.0, 8.77]        [1000.0, 8.76]        [1500.0, 8.12]
+BensonThermodynamicBase(c-(h)/3-(c)):        H298:-10.098        S298:30.423        Reference:'StandardBenson'        [300.0, 6.15]        [400.0, 7.84]        [500.0, 9.4]        [600.0, 10.79]        [800.0, 13.02]        [1000.0, 14.77]        [1500.0, 17.58]
+BensonThermodynamicBase(c-(h)/3-(c)):        H298:-10.098        S298:30.423        Reference:'StandardBenson'        [300.0, 6.15]        [400.0, 7.84]        [500.0, 9.4]        [600.0, 10.79]        [800.0, 13.02]        [1000.0, 14.77]        [1500.0, 17.58]
+BensonThermodynamicBase(c-(h)/2-(c)/2):        H298:-4.93        S298:9.357        Reference:'StandardBenson'        [300.0, 5.47]        [400.0, 6.95]        [500.0, 8.25]        [600.0, 9.35]        [800.0, 11.07]        [1000.0, 12.34]        [1500.0, 14.25]
+BensonThermodynamicBase(c-(h)-(c)/3):        H298:-0.28        S298:-12.808        Reference:'StandardBenson'        [300.0, 4.8]        [400.0, 6.0]        [500.0, 7.17]        [600.0, 8.05]        [800.0, 9.31]        [1000.0, 10.05]        [1500.0, 11.17]
+BensonThermodynamicBase(c-(h)/3-(c)):        H298:-10.098        S298:30.423        Reference:'StandardBenson'        [300.0, 6.15]        [400.0, 7.84]        [500.0, 9.4]        [600.0, 10.79]        [800.0, 13.02]        [1000.0, 14.77]        [1500.0, 17.58]
+BensonThermodynamicBase(c-(h)/3-(c)):        H298:-10.098        S298:30.423        Reference:'StandardBenson'        [300.0, 6.15]        [400.0, 7.84]        [500.0, 9.4]        [600.0, 10.79]        [800.0, 13.02]        [1000.0, 14.77]        [1500.0, 17.58]
+BensonThermodynamicBase:        H298:0.0        S298:-13.09025688132071        Reference:'InternalSymmetry(729)'
+
+========================================================
+BensonThermodynamicBase(Total):        H298:-51.11        S298:99.85374311867928        Reference:'Sum Total'        [300.0, 44.96999999999999]        [400.0, 58.28]        [500.0, 69.78]        [600.0, 79.47]        [800.0, 94.24999999999999]        [1000.0, 104.99999999999999]        [1500.0, 121.43999999999998]
+========================================================
+test                    c   8h  18          G    300.00   2000.00   1000.00    1
++4.91249164e+00+8.07568529e-02-4.10830440e-05+8.45261968e-09-5.37357291e-13    2
+-3.09776939e+04-1.85867903e+00-1.12850208e+01+1.59302793e-01-1.92454065e-04    3
++1.40796331e-07-4.37461159e-11-2.80403209e+04+7.38569621e+01                   4
+
+}}}
+
+== FILE ==
+
+
+
+[JThergasLineCommandsTesting back]
