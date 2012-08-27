@@ -10,11 +10,11 @@ The purpose of these pages is to keep track of tests and the development of test
  * Usage of the system
     * [JThergasLineCommands Line commands for data input and testing] The basic form of the JTHERGAS system is the line command. This section gives how to set up the batch JTHERGAS system (meaning the command line form) and the types of commands that can be given (along with scripts). The goal is to 
  * Implementation Notes
-    * [wiki:JThergasSQLTables SQL tables in JThermodyanmics]
-    * [wiki:JThergasConcepts Important concepts within the JTHERGAS implementation]
+    * [JThergasSQLTables SQL tables in JThermodyanmics]
+    * [JThergasConcepts Important concepts within the JTHERGAS implementation]
  * Development
-    * [wiki:JThergasTests Tests and results for tests] This gives an indication of current testing and the classes of molecules that have been tested. 
-    * [wiki:JThergasFeatures Addition of features]
+    * [JThergasTests Tests and results for tests] This gives an indication of current testing and the classes of molecules that have been tested. 
+    * [JThergasFeatures Addition of features]
 
 
 == Index ==
