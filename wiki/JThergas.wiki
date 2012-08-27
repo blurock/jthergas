@@ -5,8 +5,8 @@ JTHERGAS (a JAVA implementation of THERGAS) estimates thermodynamic information 
 The purpose of these pages is to keep track of tests and the development of testing and data input routines. This wiki document is divided into several sections. Some of the information is on usage of the system and some of the information gives some detail into the implementation.
 
 * Installation of the system
-    * [JThergas-CoreSystemInstallation Installation of core system] These are the instructions to install the core system (to run at the line)
-    * [JThergas-CoreSystemInstallationWithNetBeans Installation of core system with NetBeans] These are the instructions to install the core system using the NetBeans interface
+    * [JThergasCoreSystemInstallation Installation of core system] These are the instructions to install the core system (to run at the line)
+    * [JThergasCoreSystemInstallationWithNetBeans Installation of core system with NetBeans] These are the instructions to install the core system using the NetBeans interface
  * Usage of the system
     * [JThergasLineCommands Line commands for data input and testing] The basic form of the JTHERGAS system is the line command. This section gives how to set up the batch JTHERGAS system (meaning the command line form) and the types of commands that can be given (along with scripts). The goal is to 
  * Implementation Notes
