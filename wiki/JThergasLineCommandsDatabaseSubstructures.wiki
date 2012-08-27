@@ -1,0 +1,81 @@
+This command is for entering substructures of a given type into the database.
+
+The command line is:
+
+*Substructures*::
+     The keyword specifying that substructures are to be inputted.
+*File name*::
+     The filename relative to the current directory.
+*Source*::
+     A keyword specifying the source
+
+For example:
+
+''Substructures SymmetryCycle.don Standard''
+
+where:
+
+Substructures::
+    The keyword
+SymmetryCycle.don
+    A file with substructures for use with symmetry cycles.
+Standard
+    The keyword specifying that this is part of the standard databaase.
+
+Each line of the substructure file specifies a substructure. The Format of the line (delimited by spaces or tabs) is:
+
+Structure::
+    The substructure in NancyLinearForm.
+Name::
+    The name of the substructure
+Source::
+    The type of the substructure (this is used for calling up only certain types of substructures)
+
+For example, the beginning of the SymmetryCycle.don file looks like this:
+{{{
+CR2(#1)/CR2/CR2/1       GeneralCycloPropane   SymmetryElement
+CR2(#1)/CR//CR/1        GeneralCycloPropene   SymmetryElement
+CR2(#1)/CR2/CR2/CR2/1   GeneralCycloButane    SymmetryElement
+CR(#1)//CR/CR2/CR2/1    GeneralCycloButene    SymmetryElement
+CR(#1)//CR/CR//CR/1     GeneralCycloButadiene SymmetryElement
+}}}
+
+The first line specifies that the structure *GeneralCycloPropane* is a ''SymmetryElement'' and has the structure {{{CR2(#1)/CR2/CR2/1}}}
+
+== Database Modifications ==
+
+The input from this command modifies the CMLElement and the StructureType tables.
+
+In the CMLElement database, the structure is saved. For example, for the first structure, GeneralCycloPropane, the ElementName is set to GeneralCycloPropane. The source is set to the Source given in the input line, which is Standard in this example. The structure is saved in CML form:
+{{{
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<molecule id="GeneralCycloPropane" xmlns="http://www.xml-cml.org/schema">
+  <atomArray>
+    <atom id="a0" elementType="C" formalCharge="0"/>
+    <atom id="a1" elementType="Du" formalCharge="0"/>
+    <atom id="a2" elementType="Du" formalCharge="0"/>
+    <atom id="a3" elementType="C" formalCharge="0"/>
+    <atom id="a4" elementType="Du" formalCharge="0"/>
+    <atom id="a5" elementType="Du" formalCharge="0"/>
+    <atom id="a6" elementType="C" formalCharge="0"/>
+    <atom id="a7" elementType="Du" formalCharge="0"/>
+    <atom id="a8" elementType="Du" formalCharge="0"/>
+  </atomArray>
+  <bondArray>
+    <bond id="b1" atomRefs2="a1 a0" order="S"/>
+    <bond id="b2" atomRefs2="a2 a0" order="S"/>
+    <bond id="b3" atomRefs2="a3 a0" order="S"/>
+    <bond id="b4" atomRefs2="a4 a3" order="S"/>
+    <bond id="b5" atomRefs2="a5 a3" order="S"/>
+    <bond id="b6" atomRefs2="a6 a3" order="S"/>
+    <bond id="b7" atomRefs2="a7 a6" order="S"/>
+    <bond id="b8" atomRefs2="a8 a6" order="S"/>
+    <bond id="b9" atomRefs2="a0 a6" order="S"/>
+  </bondArray>
+</molecule>
+}}}
+
+In the SymmetryType table, the respective ElementName and StructureType fields are modified. In the example, the first line set the *ElementName* to ''GeneralCycloPropane'' and the *SymmetryType* to ''SymmetryElement''.
+
+
+[JThergasLineCommandsDatabase back]
