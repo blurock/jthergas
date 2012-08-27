@@ -1,0 +1,140 @@
+This command creates the symmetry tables for substructures. The table divides the *unspecified* atoms (those with R in the substructure) into groups where within each group the representative matches have to be the same. In addition, extra symmetry conditions within the group can be specified, such as linearity (L) or with a specific symmetry (a number), or it doesn't matter (X).
+
+The command line looks like this:
+
+*{{{SymmetryDefinition}}}*::
+    The keyword specifying that a symmetry definition is to be specified.
+*File name*::
+    The name of the file relative to the current directory
+*Source*::
+    This keyword specifies the source of symmetry table
+
+For example, the following command:
+
+     {{{SymmetryDefinition CyclicSymmetries.don CyclicSymmetries}}}
+
+where:
+
+*{{{SymmetryDefinition}}}*::
+    The keyword specifying that this is a symmetry specification
+*{{{CyclicSymmetries.don}}}*::
+    The name of the file to be read in with the table elements
+*{{{CyclicSymmetries}}}*::
+    The source keyword
+
+== File Format ==
+
+The file name has a specific form. The first line contains three keywords (space or tab delimited):
+
+=== First Line: Name, Structure and Symmetry Type ===
+Symmetry Name::
+    The name of the symmetry table being specified.
+Structure::
+    The name of the structure to be matched. This structure must exist within CMLElements
+Type::
+    The type of symmetry element being specified, for example ExternalSymmetry, InternalSymmetry or OpticalSymmetry.
+
+An example of a first line is:
+
+''{{{CyclicButadienene-C4(Z1)2(L)(s2)               GeneralCycloButadiene   ExternalSymmetry}}}''
+
+=== Group Specifications (Multiple lines) ===
+
+The next set of lines specifies the groups of unspecified atoms within the named structure that have to be the same and have the specified symmetry constraint. 
+There are three parts to this line and they are delimited by semi-colons (:):
+
+Group Number::
+   This is a number specifying the group
+List of labels::
+   This is a list of labels (unspecified atoms) within the named structure (from line 1) that have to be the same. This list is space or tab delimited.
+Symmetry specification::
+   This is an extra specification of the structural groups corresponding to the unspecified atoms. Not only do the groups starting from the unspecified atoms have to be the same, but they must also match the symmetry condition. There are basically three types of symmetry conditions, X, which means that the symmetry of the substructures doesn't matter, L, which means that the isolated structure has to be linear and the third type gives a symmetry number (typically 2 or 3).
+
+An example of such a specification is:
+{{{
+0: a1 a5:X 
+1: a3:L
+2: a7:2
+}}}
+
+==== Atom labels in Group Specification ====
+There are three groups of unspecified atom within the {{{GeneralCycloButadiene}}} substructure. To find out which labels to use, one has to look at the CMLElement structure. For this example, the structure is for {{{GeneralCycloButadiene}}}:
+
+{{{
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<molecule id="GeneralCycloButadiene" xmlns="http://www.xml-cml.org/schema">
+  <atomArray>
+    <atom id="a0" elementType="C" formalCharge="0"/>
+    <atom id="a1" elementType="Du" formalCharge="0"/>
+    <atom id="a2" elementType="C" formalCharge="0"/>
+    <atom id="a3" elementType="Du" formalCharge="0"/>
+    <atom id="a4" elementType="C" formalCharge="0"/>
+    <atom id="a5" elementType="Du" formalCharge="0"/>
+    <atom id="a6" elementType="C" formalCharge="0"/>
+    <atom id="a7" elementType="Du" formalCharge="0"/>
+  </atomArray>
+  <bondArray>
+    <bond id="b1" atomRefs2="a1 a0" order="S"/>
+    <bond id="b2" atomRefs2="a2 a0" order="D"/>
+    <bond id="b3" atomRefs2="a3 a2" order="S"/>
+    <bond id="b4" atomRefs2="a4 a2" order="S"/>
+    <bond id="b5" atomRefs2="a5 a4" order="S"/>
+    <bond id="b6" atomRefs2="a6 a4" order="D"/>
+    <bond id="b7" atomRefs2="a7 a6" order="S"/>
+    <bond id="b8" atomRefs2="a0 a6" order="S"/>
+  </bondArray>
+</molecule>
+
+}}}
+Note that the unspecified atoms (''{{{elementType}}}'' is Du) are labeled: a1, a5, a3 and a7.
+Group 0 consists of labels a1 and a5. Since it has a symmetry specification of X, this means there are no symmetry requirements on the structures which match these groups. Group 1 consists of label 3. The symmetry specification is L, so the structure matching this group has to be linear. The Group 2 consists of label a7. The symmetry specification is a number, 2, which means that the structure matching this group has has symmetry 2.
+
+=== Symmetry Specification ===
+
+The end of the group specification is the keyword *Symmetry* (at the beginning of the line) followed by a colon and the symmetry number corresponding to the specification. 
+
+An example of this is 
+
+    ''Symmetry: 2''
+
+which means that if this symmetry structure is matched, then it is assigned a symmetry of 2.
+
+=== File Example ===
+
+An example of a portion of the input file is (the first one corresponds to the examples just given):
+
+{{{
+CyclicButadienene-C4(Z1)2(L)(s2)               GeneralCycloButadiene   ExternalSymmetry
+0: a1 a5:X 
+1: a3:L
+2: a7:2
+Symmetry: 2
+CyclicButadienene-C4(Z1s2)2(Z3s2)2               GeneralCycloButadiene   ExternalSymmetry
+0: a1 a5:2 
+1: a3 a7:2
+Symmetry: 4
+CyclicButadienene-C4(Z1)L               GeneralCycloButadiene   ExternalSymmetry
+0: a1 a3 a5 a7:L
+Symmetry: 8
+CyclicButadienene-C4(Z1)2              GeneralCycloButadiene   ExternalSymmetry
+0: a1 a3 a5 a7:2
+Symmetry: 8
+CyclicButadienene-C4(Z1)X               GeneralCycloButadiene   ExternalSymmetry
+0: a1 a3 a5 a7:X
+Symmetry: 4
+}}}
+
+== Database Modifications ==
+
+The SymmetryDefinition command modifies the SymmetryDefinition and SymmetryPairAssignments tables.
+
+=== SymmetryDefinition ===
+
+The information on the first line and the last line of the symmetry specification is put into the SymmetryDefinition table. The name of the particular symmetry definition, the structure name, the type of symmetry and the symmetry number is put into the {{{SymmetryName}}}, {{{ElementName}}, {{{SymmetryType}}} and {{{SymmetryFactor}}} fields of SymmetryDefinition.
+
+=== SymmetryPairAssignments ===
+
+The information in the group block is put into the SymmetryPairAssignments. There is a table element for each label. For each label, the symmetry name, label name, group name and the connection symmetry (of the label) are  put into the elements {{{SymmetryName}}}, {{{Atomid}}}, {{{GroupName}}} and {{{ConnectedSymmetry}}}. 
+
+
+[JThergasLineCommandsDatabase back]
