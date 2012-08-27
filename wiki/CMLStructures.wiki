@@ -1,0 +1,12 @@
+This is the SQL table storing the structures and substructures used by JTHERGAS. This is to be differentiated with the SQL table DatabaseMolecule which is the molecular database of JTHERGAS.
+
+CMLStructures have the following fields:
+
+{{{ElementName}}}::
+    The keyword corresponding to the structure. This keyword is used in other SQL tables to reference the structure
+{{{CMLStructure}}}::
+    This is the [wiki:CML CML] form of the structure (as ASCII text).
+{{{Source}}}::
+    This is a keyword specifying the source of the structure. A common ''source'' is '''Standard''' which means that the structure is part of the standard database. The source can be used to differential, for example, new data from a new source or for testing purposes. It is convenient to use because then the data associated with a given source can be referenced (or even erased) in a block.
+
+[JthergasSQLTables back]
