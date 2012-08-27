@@ -1,0 +1,117 @@
+This command is used to input substructures having to do with thermodynamic corrections for substructures. The form of the command is:
+*SubstructureThermo*:: 
+       The command keyword
+*Filename.don*:: 
+       The filename (relative to the current directory) of the thermodaynamic substructure information.
+*Type Of Correction*::
+       This is a single keyword specifying the type of correction. Different correction may have difference consequences. The accepted correction types are *Cycle* and ''StericCorrections''
+*Correction Source*::
+       This is a single keyword signifying the source of the correction. 
+
+A Sample input is:
+     SubstructureThermo Cycles.don Cycles StandardCycles
+
+where:
+
+SubstructureThermo::
+   The keyword
+Cycles.don::
+   The filename in the current directory
+Cycles::
+   The type of correction
+StandardCycles::
+   The keyword specifying that these are the standard cycles.
+
+The following is the first part of the Cycles.don file:
+
+{{{
+
+c          ecriture lineaire version octobre 85 (modified October 2010)
+c          corrections cycles et table 12
+c          (cbf ajoutes)
+g
+  1  60 1.cyclopropane ring                               1 0.0 1.0     1 1.0j73
+l  cR2(#1)/cR2/cR2/1                                                            
+  1  60 2  1  27.600 1  32.100 1 -3.05 -2.53 -2.10 -1.90 -1.77 -1.62 -1.52 0 j73
+  1  60 3  0 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0j7
+  1  62 1.cyclopropene ring                               1 0.0 1.0     1 1.0j73
+l  cR2(#1)/cR//cR/1                                                           
+  1  62 2  1  53.700 1  33.600 0  0.00  0.00  0.00  0.00  0.00  0.00  0.00 0 j73
+  1  62 3  0 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0j7
+  1  63 1.cyclobutane ring                                1 0.0 1.0     1 1.0j73
+l  cR2(#1)/cR2/cR2/cR2/1                                                          
+  1  63 2  1  26.200 1  29.800 1 -4.61 -3.89 -3.14 -2.64 -1.88 -1.38 -0.67 0 j73
+  1  63 3  0 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0j7
+}}}
+
+The *c* at the beginning of the line signifies a comment.
+
+The first non-comment line of the file is g specifying that this is gas phase (this is the only form JThergas accepts).
+
+There are three blocks of data specifying corrections for ''cyclopropane ring'', ''cyclopropene ring'' and ''cyclobutane ring''
+with structures {{{cR2(#1)/cR2/cR2/1}}}, {{{cR2(#1)/cR//cR/1}}} and  {{{cR2(#1)/cR2/cR2/cR2/1}}}, respectively. The input form is that of 
+a StandardThermodynamicBlock (see link for exact format) used by THERGAS. 
+
+For the cyclopropane ring, the following information is given (starting at column 14):
+ * Standard Enthalpy: 53.700
+ * Standard Entropy: 33.600
+ * Heat Capacities at 300,400,500,600,800,1000, and 1500: -3.05 -2.53 -2.10 -1.90 -1.77 -1.62 and -1.52
+
+
+Note that in the structures *R* is used to specify connection to a carbon or hydrogen.
+
+
+== Database modifications ==
+
+In the ''cyclopropane ring'' example above, entries are made in the CMLStructures, StructureTypes, GroupStandardEnthalpy, GroupStandardEntropy and the Group table.
+
+Note that for the thermodynamic corrections, the information is stored in the same way as for the benson rules.
+
+In the GroupStandardEnthalpy table, the standard enthalpy of the cycle corrections are found. For example, for cyclopropane, the *ElementName* is set to ''cyclepropane ring'', the StandardEnthalpy is set to ''27.6'', the *Reference* is set to ''StandardCycles''. 
+
+In the GroupStandardEntropy table, the standard entropy of the cycle corrections are found. For example, for cyclopropane, the *ElementName* is set to ''cyclepropane ring'', the StandardEntropy is set to ''32.1'', the *Reference* is set to ''StandardCycles''. 
+
+In the HeatCapacityElement table seven entries are made each corresponding to the heat capacity at a given temperature. For cyclopropane ring, for all the elements
+the *ElementName* is set to ''cyclepropane ring'' and the *Reference* is set to ''StandardCycles''. The temperature is set in *Temperature* and the actual heat capacity value is set in *HeatCapacity*. For cyclpropane ring, the seven added elements correspond to the 7 standard temperatures (as in Benson's book), 300,400,500,600,800,1000, and 1500, with the corresponding heat capacity values, -3.05, -2.53, -2.10, -1.90, -1.77, -1.62 and -1.52.
+
+In the CMLStructures table, the *ElementName* is set to ''cyclopropane ring'' and the *Source* is set to ''StandardCycles''.
+The structure itself is found in CML form in *CMLStructure*:
+{{{
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<molecule id="cyclopropane ring" xmlns="http://www.xml-cml.org/schema">
+  <atomArray>
+    <atom id="a0" title="H" elementType="Du" formalCharge="0"/>
+    <atom id="a1" title="H" elementType="Du" formalCharge="0"/>
+    <atom id="a2" title="H" elementType="Du" formalCharge="0"/>
+    <atom id="a3" title="H" elementType="Du" formalCharge="0"/>
+    <atom id="a4" title="H" elementType="Du" formalCharge="0"/>
+    <atom id="a5" title="H" elementType="Du" formalCharge="0"/>
+    <atom id="a6" elementType="C" formalCharge="0">
+      <scalar dictRef="cdk:partialCharge" dataType="xsd:double">0.0</scalar>
+    </atom>
+    <atom id="a7" elementType="C" formalCharge="0">
+      <scalar dictRef="cdk:partialCharge" dataType="xsd:double">0.0</scalar>
+    </atom>
+    <atom id="a8" elementType="C" formalCharge="0">
+      <scalar dictRef="cdk:partialCharge" dataType="xsd:double">0.0</scalar>
+    </atom>
+  </atomArray>
+  <bondArray>
+    <bond id="b1" atomRefs2="a0 a6" order="S"/>
+    <bond id="b2" atomRefs2="a1 a6" order="S"/>
+    <bond id="b3" atomRefs2="a7 a6" order="S"/>
+    <bond id="b4" atomRefs2="a2 a7" order="S"/>
+    <bond id="b5" atomRefs2="a3 a7" order="S"/>
+    <bond id="b6" atomRefs2="a8 a7" order="S"/>
+    <bond id="b7" atomRefs2="a4 a8" order="S"/>
+    <bond id="b8" atomRefs2="a5 a8" order="S"/>
+    <bond id="b9" atomRefs2="a6 a8" order="S"/>
+  </bondArray>
+</molecule>
+}}}
+
+In the *StructureTypes* table, the list of molecules having the type *Cycles* are listed. For example, for cyclepropane ring, the *ElementName* is set to ''cyclepropane ring'' and the *StructureType* is set to ''Cycles''.
+
+
+
+[JThergasLineCommandsDatabase back]
