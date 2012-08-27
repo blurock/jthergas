@@ -1,0 +1,15 @@
+The concept of meta atoms is the key to the flexibility of the JTHERGAS system.
+Meta atoms define an '''atom label''' which represents a structure. The structure is defined in CMLElement.
+The types of meta atoms are:
+
+BensonAtom ::
+    This defined the structures associated with the benson rules, such as single, double, triple or aromatic bonding of carbons (and other elements).
+    Also multiple atoms can be defined, such as '''{{{co}}}'''.
+LinearStructure ::
+    This is how linear structures are defined. A complete linear structure is defined as a chain of individual linear structures. The individual linear structures are defined as meta atoms.
+NancyLinearForm ::
+    Within the nancy linear form, there are meta atoms defined representing structures. For example '''{{{co}}}'''
+{{{StructureMetaAtom}}}::
+    This is a structure that is substituted for steric structures. This was especially made to simplify the graph isomorphism problem. A classic example is the methyl group. Matching each methyl group multiplies the number of equivalent matches by 6. For example, a tert-butyl system would match (6*6*6*6)*24 without the methyl substitution and only 24 with.
+
+[JThergasSQLTables back]
